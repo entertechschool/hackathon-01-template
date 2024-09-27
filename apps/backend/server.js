@@ -8,13 +8,17 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Conectar a la base de datos al iniciar la app
 connectDB();
 
 app.post("/user", async (request, response) => {
-	// TODO: Crear un nuevo usuario en la DB (Mongo)
-	response.json({ message: "Nuevo usuario creado." });
+	// TODO: Si el correo no existe, crear un nuevo usuario en la DB (Mongo) y devolver el ID.
+	// TODO: Si existe solamente devolver el ID
+	// TODO: Redireccionar al frontend con el token en la URL (no es lo más seguro, pero es un ejemplo)
+	response.redirect("http://localhost:5500/auth?id=");
 });
 
 app.post("/skill", async (request, response) => {
